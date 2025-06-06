@@ -18,33 +18,38 @@
       display: flex;
       flex-direction: row;
       align-items: stretch;
-      height: 80vh;    /* Both children (.info-box and .resizable) will be 100% of this */
-      width: 90vw;
+      height: 80vh;       /* Both children will be 80vh high */
+      width: 90vw;        /* Total width is 90vw */
       box-sizing: border-box;
-      gap: 32px;
+      gap: 2vw;           /* gap is 2vw (≈32px on a 1600px-wide viewport) */
     }
 
-    /* Make the info-box a fixed small width (e.g. 300px) */
+    /* Left box is always 25vw wide */
     .info-box {
-      flex: 0 0 300px;            /* fixed base width of 300px, no growing/shrinking */
+      flex: 0 0 25vw;     /* fixed width = 25vw */
       background: #fff;
       border: 2px solid #222;
       border-radius: 12px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.10);
       display: flex;
       flex-direction: column;
-      padding: 24px 16px;
+      padding: 2vh 1vw;   /* padding in vh/vw for consistent scaling */
       box-sizing: border-box;
-      overflow-y: auto;           /* scroll if content overflows */
-      height: 100%;               /* match .main-container’s 80vh */
+      overflow-y: auto;   /* scroll if content exceeds 80vh */
+      height: 100%;       /* match parent’s 80vh */
       margin: 0;
       z-index: 3;
     }
 
     .info-box .placeholder-content {
-      font-size: 1.2em;
+      font-size: 1.1em;
       color: #333;
-      margin-bottom: 12px;
+      margin-bottom: 1vh;
+    }
+
+    .info-box .placeholder-content p {
+      margin: 1vh 0;
+      line-height: 1.4;
     }
 
     .info-box .bottom-image {
@@ -53,14 +58,14 @@
       object-fit: contain;
       border-radius: 8px;
       display: block;
-      margin-top: 12px;
+      margin-top: 2vh;
     }
 
-    /* Let the iframe container fill the remaining space */
+    /* Right container flexes to fill remaining 65vw (plus gap) */
     .resizable {
-      flex: 1 1 auto;             /* grow to fill leftover width */
-      min-width: 0;
-      height: 100%;               /* fills .main-container’s 80vh */
+      flex: 1 1 auto;     /* grow to fill leftover width */
+      min-width: 0;       /* allow flex-shrink */
+      height: 100%;       /* match parent’s 80vh */
       position: relative;
       border: 1px solid #ccc;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -135,7 +140,7 @@
           </a>.
         </p>
 
-        <!-- Add more paragraphs or content here; if it exceeds 300px height, the box will scroll -->
+        <!-- Add more paragraphs here if needed; the box will scroll once content exceeds 80vh -->
       </div>
 
       <img
